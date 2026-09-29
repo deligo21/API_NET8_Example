@@ -1,0 +1,43 @@
+# Archivos de compilación
+bin/
+obj/
+*.dll
+*.exe
+
+# Archivos de Visual Studio
+.vs/
+.vscode/
+*.user
+*.sln.iml
+*.resharper
+*.DotSettings.user
+
+# Archivos de publicación
+PublishProfiles/
+publish/
+
+# Archivos de configuración local
+appsettings.*.json
+appsettings.local.json
+settings.local.json
+
+# Archivos de logs
+logs/
+*.log
+
+# Archivos temporales
+.temp/
+temp/
+*.tmp
+
+# Node modules (si se usa frontend)
+node_modules/
+dist/
+
+# Otros
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+*.swo
+~*

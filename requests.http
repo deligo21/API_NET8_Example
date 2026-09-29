@@ -1,0 +1,102 @@
+### Variables
+@baseUrl = https://localhost:5001
+@customerId = cfe8b150-2f84-4ala-bdf4-923b20e34973
+
+### Test 1: Registrar un pago válido
+POST {{baseUrl}}/api/payments
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "serviceProvider": "SERVICIOS ELÉCTRICOS S.A.",
+  "amount": 120.50
+}
+
+### Test 2: Registrar un pago válido (agua)
+POST {{baseUrl}}/api/payments
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "serviceProvider": "SERVICIOS DE AGUA POTABLE",
+  "amount": 89.75
+}
+
+### Test 3: Registrar un pago válido (telecomunicaciones)
+POST {{baseUrl}}/api/payments
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "serviceProvider": "ENTEL",
+  "amount": 150.00
+}
+
+### Test 4: Error - Monto mayor a 1500 Bs
+POST {{baseUrl}}/api/payments
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "serviceProvider": "SERVICIOS ELÉCTRICOS S.A.",
+  "amount": 2000.00
+}
+
+### Test 5: Error - CustomerId vacío
+POST {{baseUrl}}/api/payments
+Content-Type: application/json
+
+{
+  "customerId": "00000000-0000-0000-0000-000000000000",
+  "serviceProvider": "SERVICIOS ELÉCTRICOS S.A.",
+  "amount": 120.50
+}
+
+### Test 6: Error - ServiceProvider vacío
+POST {{baseUrl}}/api/payments
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "serviceProvider": "",
+  "amount": 120.50
+}
+
+### Test 7: Error - Monto en 0 o negativo
+POST {{baseUrl}}/api/payments
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "serviceProvider": "SERVICIOS ELÉCTRICOS S.A.",
+  "amount": 0
+}
+
+### Test 8: Consultar pagos de un cliente
+GET {{baseUrl}}/api/payments?customerId={{customerId}}
+
+### Test 9: Consultar pagos - CustomerId vacío (error)
+GET {{baseUrl}}/api/payments?customerId=00000000-0000-0000-0000-000000000000
+
+### Test 10: Consultar pagos con diferente cliente
+GET {{baseUrl}}/api/payments?customerId=12345678-1234-5678-1234-567812345678
+
+### Test 11: Registrar múltiples pagos para pruebas
+POST {{baseUrl}}/api/payments
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "serviceProvider": "COTEL",
+  "amount": 200.00
+}
+
+### Test 12: Registrar pago máximo permitido (1500 Bs)
+POST {{baseUrl}}/api/payments
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "serviceProvider": "SERVICIOS ELÉCTRICOS S.A.",
+  "amount": 1500.00
+}
